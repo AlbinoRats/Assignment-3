@@ -1,7 +1,7 @@
 #include"algorithm.h"
 
-
 algorithm::algorithm(){}
+
 unsigned int algorithm::edit_distance(const string & s1, const string & s2){
 
 	const size_t len1 = s1.size(), len2 = s2.size();

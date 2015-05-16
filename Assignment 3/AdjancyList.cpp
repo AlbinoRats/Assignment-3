@@ -2,7 +2,7 @@
 
 AdjancyList::AdjancyList(){}
 
-void AdjancyList::addVertex(string key, node vertex){
+void AdjancyList::addVertex(const string & key, const node & vertex){
 	//checks to see if the key is already inside the map, if so, it'll add the vertex into the vector of that key
 	if (adjancyList.find(key) != adjancyList.end())
 	{
@@ -22,9 +22,9 @@ void AdjancyList::addVertex(string key, node vertex){
 		addVertex(vertex.vertex, reverse);
 }
 
-vector<node>AdjancyList::getVertices(string key){
+vector<node>AdjancyList::getVertices(const string & key){
 	return adjancyList[key];
 }
-bool AdjancyList::contains(string key, string vertex){
+bool AdjancyList::contains(const string & key, const string & vertex){
 	return find(getVertices(key).begin, getVertices(key).end, vertex);
 }

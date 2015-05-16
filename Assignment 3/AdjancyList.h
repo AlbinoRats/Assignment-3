@@ -21,11 +21,11 @@ public:
 	//constructor
 	AdjancyList();
 	//This takes care of adding a new key and or adding a new value into a corresponding key
-	void addVertex(string key, const node vertex);
+	void addVertex(const string & key, const node & vertex);
 	//returns the vector of values corresponding to the key
-	vector<node> getVertices(string key);
+	vector<node> getVertices(const string & key);
 	//checks if a vertex is inside the vector of the key
-	bool contains(string key, string vertex);
+	bool contains(const string & key, const string & vertex);
 
 
 };
