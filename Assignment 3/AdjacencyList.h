@@ -19,27 +19,98 @@ struct node{
 //AdjancyList
 class AdjacencyList{
 private:
-
 	//Map that contains the string as the key, and a vector containing nodes as the adjacny vertices along with the weight to it.
-	int totalEdges;
 	map<string, vector<node> > adjacencyList;
 
+	int totalEdges;
 public:
 	//constructor -- needs default values, ill fix it with initializer list
-	AdjacencyList();
+	AdjacencyList(){
+		totalEdges = 0;
+		//adjacencyList = new map<string, vector<node>>();
+	}
+	//inserts vertex into adjacencylist, it will take care of undirect graph and dupes.
+	void addVertex(const string & key, const node & vertex) {
+		//checks to see if the key is already inside the map, if so, it'll add the vertex into the vector of that key
 
-	//This takes care of adding a new key and or adding a new value into a corresponding key
-	void addVertex(const string & key, const node & vertex);
+		if (adjacencyList.find(key) != adjacencyList.end()) {
+			totalEdges++;
+			adjacencyList[key].push_back(vertex);
+		}
+		//else adds the key into the map and add the vertex onto the vector
+		else {
+			vector<node> temp;
+			temp.push_back(vertex);
+			totalEdges++;
 
-	//returns the vector of values corresponding to the key
-	vector<node> & getVertices(const string & key);
+			adjacencyList.insert(pair<string, vector<node> >(key, temp));
+		}
+		//for undirected graphs, basically calls addVertex on reversed parameter.
 
-	//checks if a vertex is inside the vector of the key
-	bool contains(const string & key, const string & vertex);
-	//print
-	void print();
-	//print size
-	void printSize();
+		node reverse;
+		reverse.vertex = key;
+		reverse.weight = vertex.weight;
+		if (!contains(vertex.vertex, reverse.vertex)){
+			addVertex(vertex.vertex, reverse);
+		}
+	}
+	//returns the vector of nodes that are connected to key in adjacencyList
+	void  getVertices(const string & key, vector<node> & vertices) {
+		vertices = adjacencyList[key];
+		cout << adjacencyList[key].size() << endl;
+	}
+
+	//checks if a name is connected to a key
+	bool  contains(const string & key, const string & vertex){
+		vector<node> vertices;
+		getVertices(key, vertices);
+		if (find(vertices.begin(), vertices.end(), vertex) != vertices.end()){
+			return true;
+		}
+		return false;
+
+	}
+	string getMinVertex(const string & key) {
+
+		int minWeight = numeric_limits<int>::max();
+		string minVertex;
+
+		vector<node> adjacentVecs;
+		getVertices(key, adjacentVecs);
+		cout << adjacentVecs.size() << endl;
+		for (int i = 0; i<adjacentVecs.size(); i++) {
+			if (adjacentVecs[i].weight < minWeight) {
+				minWeight = adjacentVecs[i].weight;
+				minVertex = adjacentVecs[i].vertex;
+			}
+		}
+		return minVertex;
+	}
+	//prints the whole map
+	void  print(){
+		for (map<string, vector<node> >::const_iterator it = adjacencyList.begin();
+			it != adjacencyList.end(); ++it)
+		{
+			string key = it->first;
+			cout << "Key vertex: " << key << endl;
+			cout << "Names: \n";
+			for (int i = 0; i<adjacencyList[key].size(); i++){
+				cout << adjacencyList[key][i].vertex << endl;
+				cout << adjacencyList[key][i].weight << endl;
+			}
+			cout << endl << endl;
+		}
+
+
+	}
+	//prints edge amount and vertices amount
+	void printSize(){
+		cout << "Total number of Vertices: " << adjacencyList.size() << endl;
+		cout << "Total number of Edges: " << totalEdges << endl;
+	}
+
+
+
 
 
 };
