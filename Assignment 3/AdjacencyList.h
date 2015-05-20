@@ -3,7 +3,7 @@
 #include<string>
 #include<vector>
 #include<map>
-
+#include<iostream>
 using namespace std;
 //node struct to hold the vertex and its corresponding weight
 struct node{
@@ -31,10 +31,12 @@ public:
 	void addVertex(const string & key, const node & vertex);
 
 	//returns the vector of values corresponding to the key
-	vector<node> getVertices(const string & key);
+	vector<node> & getVertices(const string & key);
 
 	//checks if a vertex is inside the vector of the key
 	bool contains(const string & key, const string & vertex);
+	//print
+	void print();
 
 
 };

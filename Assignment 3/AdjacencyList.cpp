@@ -16,13 +16,16 @@ void AdjacencyList::addVertex(const string & key, const node & vertex) {
 		adjacencyList.insert(pair<string, vector<node> >(key, temp));
 	}
 	//for undirected graphs, basically calls addVertex on reversed parameter.
+
 	node reverse;
 	reverse.vertex = key;
 	reverse.weight = vertex.weight;
-	addVertex(vertex.vertex, reverse);
+	if (!contains(vertex.vertex, reverse.vertex)){
+		addVertex(vertex.vertex, reverse);
+	}
 }
 
-vector<node> AdjacencyList::getVertices(const string & key) {
+vector<node>& AdjacencyList::getVertices(const string & key) {
 	return adjacencyList[key];
 }
 
@@ -32,5 +35,16 @@ bool AdjacencyList::contains(const string & key, const string & vertex){
 		return true;
 	}
 	return false;
-	
+
+}
+void AdjacencyList::print(){
+	for (map<string, vector<node> >::const_iterator it = adjacencyList.begin();
+		it != adjacencyList.end(); ++it)
+	{
+		cout <<"Key vertex: "<< it->first<<"\nNames: ";
+		for (int i = 0; i < it->second.size(); i++){
+			cout << it->second[i].vertex << " " << it->second[i].weight<<" " ;
+		}
+		cout << endl<<endl;
+	}
 }

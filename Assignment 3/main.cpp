@@ -10,7 +10,7 @@
 using namespace std;
 void readIn(vector<string> & names){
 	ifstream input;
-	input.open("allnames.txt");
+	input.open("boynames.txt");
 	
 	string name;
 	while (!input.eof()){
@@ -44,6 +44,8 @@ int main(){
 			}
 		}
 	}
+	cout << "done\n";
+	graph.print();
 
 	system("pause");
 
