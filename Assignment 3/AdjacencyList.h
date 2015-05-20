@@ -4,6 +4,7 @@
 #include<vector>
 #include<map>
 #include<iostream>
+#include<algorithm>
 using namespace std;
 //node struct to hold the vertex and its corresponding weight
 struct node{
