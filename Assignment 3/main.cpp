@@ -10,7 +10,7 @@
 using namespace std;
 void readIn(vector<string> & names){
 	ifstream input;
-	input.open("allnames.txt");
+	input.open("marynames.txt");
 	
 	string name;
 	while (!input.eof()){
@@ -52,9 +52,9 @@ int main(){
 		}
 	}
 	//cout << "done\n";
+	graph.printSize();
+	//graph.print();
 
-	graph.print();
-
-	//system("pause");
+system("pause");
 
 }

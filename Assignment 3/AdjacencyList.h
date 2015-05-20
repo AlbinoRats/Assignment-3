@@ -21,9 +21,9 @@ class AdjacencyList{
 private:
 
 	//Map that contains the string as the key, and a vector containing nodes as the adjacny vertices along with the weight to it.
-	
+	int totalEdges;
 	map<string, vector<node> > adjacencyList;
-	
+
 public:
 	//constructor -- needs default values, ill fix it with initializer list
 	AdjacencyList();
@@ -38,6 +38,8 @@ public:
 	bool contains(const string & key, const string & vertex);
 	//print
 	void print();
+	//print size
+	void printSize();
 
 
 };

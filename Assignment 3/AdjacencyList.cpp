@@ -1,21 +1,22 @@
 #include "AdjacencyList.h"
 
 AdjacencyList::AdjacencyList() {
-
+	totalEdges = 0;
 }
 
 void AdjacencyList::addVertex(const string & key, const node & vertex) {
 	//checks to see if the key is already inside the map, if so, it'll add the vertex into the vector of that key
-	
+
 	if (adjacencyList.find(key) != adjacencyList.end()) {
-		
+		totalEdges++;
 		adjacencyList[key].push_back(vertex);
 	}
 	//else adds the key into the map and add the vertex onto the vector
 	else {
 		vector<node> temp;
 		temp.push_back(vertex);
-		
+		totalEdges++;
+
 		adjacencyList.insert(pair<string, vector<node> >(key, temp));
 	}
 	//for undirected graphs, basically calls addVertex on reversed parameter.
@@ -44,15 +45,19 @@ void AdjacencyList::print(){
 	for (map<string, vector<node> >::const_iterator it = adjacencyList.begin();
 		it != adjacencyList.end(); ++it)
 	{
-		string key=it->first;
-		cout <<"Key vertex: "<< key<<endl;
-		cout<<"Names: \n";
-		for(int i=0;i<adjacencyList[key].size();i++){
-			cout<<adjacencyList[key][i].vertex<<endl;
-			cout<<adjacencyList[key][i].weight<<endl;
+		string key = it->first;
+		cout << "Key vertex: " << key << endl;
+		cout << "Names: \n";
+		for (int i = 0; i<adjacencyList[key].size(); i++){
+			cout << adjacencyList[key][i].vertex << endl;
+			cout << adjacencyList[key][i].weight << endl;
 		}
-		cout << endl<<endl;
+		cout << endl << endl;
 	}
-	
-	
+
+
+}
+void AdjacencyList::printSize(){
+	cout << "Total number of Vertices: "<<adjacencyList.size() << endl;
+	cout << "Total number of Edges: " << totalEdges << endl;
 }
