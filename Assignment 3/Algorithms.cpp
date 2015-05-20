@@ -1,5 +1,5 @@
 #include "Algorithms.h"
-
+#include<vector>
 //it said algorithm was redefined with that constructor, i dont think you need to restate it if its empty
 
 void prims_algorithm() {
@@ -28,5 +28,34 @@ unsigned int Algorithms::edit_distance(const string & s1, const string & s2) {
 					{ d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1]
 							+ (s1[i - 1] == s2[j - 1] ? 0 : 1) });
 	return d[len1][len2];
+
+}
+void Algorithms::DFS(AdjacencyList &var,node vertex,int depth, stack<node> & mystack){
+	//stack<node> myStack;
+	if (vertex.vertex == ""){
+		node back;
+		back.vertex	=mystack.top().vertex;
+		back.visited = mystack.top().visited;
+		back.weight = mystack.top().visited;
+		mystack.pop();
+		DFS(var,back,depth,mystack);
+		
+	}
+	vertex.visited = true;
+	mystack.push(vertex);
+	string min = var.getMinVertex(vertex.vertex);
+	vector<node> myVec;
+	var.getVertices(min, myVec);
+	int weight = var.getWeight(vertex.vertex, min);
+	if ( weight<= depth){
+		vertex.vertex = min;
+		vertex.weight = weight;
+		vertex.visited = false;
+		int pos = find(myVec.begin(), myVec.end(), vertex) - myVec.begin();
+		swap(myVec[pos], myVec[myVec.size() - 1]);
+		myVec.pop_back();
+		DFS(var, vertex, depth, mystack);
+	}
+
 
 }

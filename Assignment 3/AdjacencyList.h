@@ -10,9 +10,13 @@ using namespace std;
 struct node{
 	string vertex;
 	int weight;
+	bool visited=false;
 	//overloaded ==
 	bool operator==(string const & rhs){
 		return vertex == rhs;
+	}
+	bool operator==(node const&rhs){
+		return vertex == rhs.vertex;
 	}
 };
 
@@ -56,13 +60,15 @@ public:
 	}
 	//returns the vector of nodes that are connected to key in adjacencyList
 	void  getVertices(const string & key, vector<node> & vertices) {
-		vertices = adjacencyList[key];
-		cout << adjacencyList[key].size() << endl;
+		vector<node>*x = &adjacencyList[key];
+		vertices = *x;
+		
 	}
 
 	//checks if a name is connected to a key
 	bool  contains(const string & key, const string & vertex){
 		vector<node> vertices;
+		
 		getVertices(key, vertices);
 		if (find(vertices.begin(), vertices.end(), vertex) != vertices.end()){
 			return true;
@@ -85,6 +91,15 @@ public:
 			}
 		}
 		return minVertex;
+	}
+	//returns the weight of a vertex and the key
+	int getWeight(const string&key, const string&vertex){
+		vector<node>::iterator it;
+		it = find(adjacencyList[key].begin(), adjacencyList[key].end(), vertex);
+		if (it != adjacencyList[key].end()){
+			node found = *it;
+			return found.weight;
+		}
 	}
 	//prints the whole map
 	void  print(){

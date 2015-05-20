@@ -5,6 +5,9 @@
 #include<string.h>
 #include<vector>
 #include<algorithm>
+#include<map>
+#include"AdjacencyList.h"
+#include<stack>
 
 //you also named the class same as your include file, which might cause kind of a conflict
 using namespace std;
@@ -18,9 +21,8 @@ public:
 
 	//PUT PRIMS HERE
 	// dont tell me what to do
-	void prims_algorithm() {
-
-	}
+	void prims_algorithm();
+	void DFS(AdjacencyList & var, node vertex,int depth,stack<node> & mystack);
 	//YOU'LL DO WHAT I TELL YOU TO DO
 
 };
