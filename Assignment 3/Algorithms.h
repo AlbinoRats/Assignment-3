@@ -1,6 +1,5 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
-
 #include<iostream>
 #include<string.h>
 #include<vector>
@@ -8,7 +7,7 @@
 #include<map>
 #include"AdjacencyList.h"
 #include<stack>
-
+#include<vector>
 //you also named the class same as your include file, which might cause kind of a conflict
 using namespace std;
 class Algorithms{

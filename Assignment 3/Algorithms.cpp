@@ -1,5 +1,5 @@
 #include "Algorithms.h"
-#include<vector>
+
 //it said algorithm was redefined with that constructor, i dont think you need to restate it if its empty
 
 void prims_algorithm() {
@@ -43,12 +43,12 @@ void Algorithms::DFS(AdjacencyList &var,node vertex,int depth, stack<node> & mys
 	}
 	vertex.visited = true;
 	mystack.push(vertex);
-	string min = var.getMinVertex(vertex.vertex);
+	node min = var.getMinVertex(vertex.vertex);
 	vector<node> myVec;
-	var.getVertices(min, myVec);
-	int weight = var.getWeight(vertex.vertex, min);
+	var.getVertices(min.vertex, myVec);
+	int weight = var.getWeight(vertex.vertex, min.vertex);
 	if ( weight<= depth){
-		vertex.vertex = min;
+		vertex.vertex = min.vertex;
 		vertex.weight = weight;
 		vertex.visited = false;
 		int pos = find(myVec.begin(), myVec.end(), vertex) - myVec.begin();
@@ -56,6 +56,6 @@ void Algorithms::DFS(AdjacencyList &var,node vertex,int depth, stack<node> & mys
 		myVec.pop_back();
 		DFS(var, vertex, depth, mystack);
 	}
-
+	
 
 }

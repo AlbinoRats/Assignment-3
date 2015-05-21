@@ -53,7 +53,7 @@ int main(){
 	}
 	//cout << "done\n";
 	graph.printSize();
-	cout<<graph.getMinVertex("Mary");
+	cout<<graph.getMinVertex("Mary").vertex;
 	//graph.print();
 
 system("pause");
