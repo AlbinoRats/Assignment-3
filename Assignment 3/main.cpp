@@ -8,54 +8,56 @@
 #include"AdjacencyList.h"
 #include"Algorithms.h"
 using namespace std;
-void readIn(vector<string> & names){
+void readIn(vector<string> & names) {
 	ifstream input;
 	input.open("marynames.txt");
-	
+
 	string name;
-	while (!input.eof()){
+	while (!input.eof()) {
 		getline(input, name);
 		names.push_back(name);
-		
+
 	}
 	input.close();
-	
+
 }
-void print(vector < string > &names){
-	for (int i = 0; i < names.size(); i++)
-	{
+void print(vector<string> &names) {
+	for (int i = 0; i < names.size(); i++) {
 		cout << names[i] << endl;
 	}
 }
-int main(){
+
+int main() {
 	Algorithms algo;
-	vector<string> names;
-	readIn(names);
-	
+	vector < string > names;
+	readIn (names);
+
 	AdjacencyList graph;
-	
-	while (names.size() != 0){
+
+	while (names.size() != 0) {
 		string name = names.back();
-		
+
 		names.pop_back();
-		for (int i = 0; i < names.size(); i++){
+		for (int i = 0; i < names.size(); i++) {
 			int distance = algo.edit_distance(name, names[i]);
-			
-			if (distance <= 4){
-				
-				node  vertex;
+
+			if (distance <= 4) {
+
+				node vertex;
 				vertex.vertex = names[i];
 				vertex.weight = distance;
-				
+
 				graph.addVertex(name, vertex);
 			}
 		}
 	}
 	//cout << "done\n";
+	cout << "---- PRINTING GRAPH ----" << endl;
 	graph.printSize();
-	cout<<graph.getMinVertex("Mary").vertex;
+	node minVertex = graph.getMinVertex("Mary");
+	cout << minVertex.vertex << endl;
 	//graph.print();
 
-system("pause");
+	//system("pause");
 
 }
