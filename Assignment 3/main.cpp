@@ -15,6 +15,7 @@ void readIn(vector<string> & names) {
 	string name;
 	while (!input.eof()) {
 		getline(input, name);
+		name = name.substr(0, name.size() - 1);
 		names.push_back(name);
 
 	}
@@ -58,6 +59,6 @@ int main() {
 	cout << minVertex.vertex << endl;
 	//graph.print();
 
-	//system("pause");
+	system("pause");
 
 }
