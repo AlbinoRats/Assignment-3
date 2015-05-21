@@ -119,6 +119,12 @@ public:
 		cout << "Total number of Vertices: " << adjacencyList.size() << endl;
 		cout << "Total number of Edges: " << totalEdges << endl;
 	}
+	int getEdges(){
+		return totalEdges;
+	}
+	int getVertex(){
+		return adjacencyList.size();
+	}
 
 };
 #endif
