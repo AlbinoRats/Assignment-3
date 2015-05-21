@@ -15,14 +15,14 @@ public:
 	Algorithms(){
 
 	}
-	//MINIMUM EDIT DISTANCE FORMULA FROM WIKIPEDIA (because I'm a lazy fuck)
+	//MINIMUM EDIT DISTANCE FORMULA FROM WIKIPEDIA 
 	unsigned int edit_distance(const string & s1, const string & s2);
 
 	//PUT PRIMS HERE
-	// dont tell me what to do
+	
 	void prims_algorithm();
 	void DFS(AdjacencyList & var, node vertex,int depth,stack<node> & mystack);
-	//YOU'LL DO WHAT I TELL YOU TO DO
+	
 
 };
 #endif
