@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
 	Algorithms algo;
 	//stores all the names in the txt file into the vector
 	vector<string> names;
-	readIn(names);
+	readIn(names,filename);
 
 	AdjacencyList graph;
 	//loop continues when the size of the vector is not 0
